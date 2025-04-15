@@ -3,7 +3,7 @@ version: "2.4" # single host
 services:
   minecraft:
     container_name: minecraft
-    network_mode: host
+    network_mode: bridge
     image: itzg/minecraft-server:latest
     restart: unless-stopped
     environment:
@@ -54,8 +54,8 @@ services:
       PLAYER_IDLE_TIMEOUT: 0
 
     ports:
-      - "25565:25565"
-      - "25575:25575"
+      - "25565:25565" # minecraft server port
+      - "25575:25575" # rcon port
     volumes:
       - "./data:/data"
       - "./mods:/mods" # for fabric mods
