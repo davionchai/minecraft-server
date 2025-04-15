@@ -4,7 +4,7 @@ services:
   minecraft:
     container_name: minecraft
     network_mode: host
-    image: itzg/minecraft-server:2025.4.0
+    image: itzg/minecraft-server:latest
     restart: unless-stopped
     environment:
       # infra
@@ -41,7 +41,7 @@ services:
       EULA: "TRUE"
       TYPE: "FABRIC"
       FABRIC_LAUNCHER_VERSION: 1.0.3
-      FABRIC_LOADER_VERSION: 0.16.3
+      FABRIC_LOADER_VERSION: 0.16.13
       # Since Fabric server type only includes the loader, most times
       # the fabric-api is required for other mods to function
       MODRINTH_PROJECTS: |
@@ -60,22 +60,22 @@ services:
       - "./data:/data"
       - "./mods:/mods" # for fabric mods
 
-  backups:
-    image: itzg/mc-backup:2025.4.0
-    user: "1000"
-    depends_on:
-      mc:
-        condition: service_healthy
-    environment:
-      BACKUP_METHOD: rsync
-      PRUNE_BACKUPS_COUNT: 50
-      PRUNE_BACKUPS_DAYS: 5000
-      BACKUP_INTERVAL: "2h"
-      RCON_HOST: mc
-      # since this service waits for mc to be healthy, no initial delay is needed
-      INITIAL_DELAY: 0
-      # As an example, to backup only the world data:
-      # INCLUDES: world,world_nether,world_the_end
-    volumes:
-      - ./data:/data:ro
-      - ./backups:/backups
+  # backups:
+  #   image: itzg/mc-backup:2025.4.0
+  #   user: "1000"
+  #   depends_on:
+  #     mc:
+  #       condition: service_healthy
+  #   environment:
+  #     BACKUP_METHOD: rsync
+  #     PRUNE_BACKUPS_COUNT: 50
+  #     PRUNE_BACKUPS_DAYS: 5000
+  #     BACKUP_INTERVAL: "2h"
+  #     RCON_HOST: mc
+  #     # since this service waits for mc to be healthy, no initial delay is needed
+  #     INITIAL_DELAY: 0
+  #     # As an example, to backup only the world data:
+  #     # INCLUDES: world,world_nether,world_the_end
+  #   volumes:
+  #     - ./data:/data:ro
+  #     - ./backups:/backups

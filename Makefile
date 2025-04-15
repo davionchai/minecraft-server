@@ -1,11 +1,11 @@
+.PHONY: up
 up:
-	docker compose -f docker-compose.yml up -d
+	docker compose up -d
 
+.PHONY: down
 down:
-	docker compose -f docker-compose.yml down
+	docker compose down --remove-orphans -v
 
+.PHONY: logs
 logs:
-	docker compose -f docker-compose.yml logs -f
-
-restart:
-	docker compose -f docker-compose.yml restart
+	docker compose logs -f -t
