@@ -46,6 +46,8 @@ services:
       # the fabric-api is required for other mods to function
       MODRINTH_PROJECTS: |
         fabric-api
+        terralith
+        vanilla-refresh
       # player
       MAX_PLAYERS: 24
       ANNOUNCE_PLAYER_ACHIEVEMENTS: "true"
