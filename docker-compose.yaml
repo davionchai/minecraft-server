@@ -46,7 +46,6 @@ services:
       # the fabric-api is required for other mods to function
       MODRINTH_PROJECTS: |
         fabric-api
-        terralith
         vanilla-refresh
       # player
       MAX_PLAYERS: 24
@@ -54,6 +53,10 @@ services:
       VIEW_DISTANCE: 10
       SIMULATION_DISTANCE: 10
       PLAYER_IDLE_TIMEOUT: 0
+      ENABLE_WHITELIST: "true"
+      OVERRIDE_WHITELIST: "true"
+      WHITELIST: |
+        davionky
 
     ports:
       - "25565:25565" # minecraft server port
