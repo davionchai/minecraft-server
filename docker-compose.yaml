@@ -47,6 +47,7 @@ services:
       MODRINTH_PROJECTS: |
         fabric-api
         vanilla-refresh
+        villager-in-a-bucket
       # player
       MAX_PLAYERS: 24
       ANNOUNCE_PLAYER_ACHIEVEMENTS: "true"
