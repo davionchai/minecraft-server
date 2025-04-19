@@ -22,8 +22,8 @@ services:
       MAX_TICK_TIME: "-1"
       # base game
       VERSION: 1.21.5
-      # SEED: "1171653971640638092"
-      MAX_WORLD_SIZE: 5000
+      SEED: "7145097980"
+      MAX_WORLD_SIZE: 10000
       TZ: "Asia/Kuala_Lumpur"
       MOTD: "Muakzz"
       DIFFICULTY: "normal"
@@ -56,6 +56,8 @@ services:
       ENABLE_WHITELIST: "true"
       OVERRIDE_WHITELIST: "true"
       WHITELIST: |
+        davionky
+      OPS: |
         davionky
 
     ports:
