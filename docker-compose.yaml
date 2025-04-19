@@ -48,6 +48,7 @@ services:
         fabric-api
         vanilla-refresh
         villager-in-a-bucket
+        appleskin
       # player
       MAX_PLAYERS: 24
       ANNOUNCE_PLAYER_ACHIEVEMENTS: "true"
