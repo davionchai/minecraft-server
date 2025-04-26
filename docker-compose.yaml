@@ -26,6 +26,7 @@ services:
       MOTD: "Muakzz"
       DIFFICULTY: "normal"
       MODE: "survival"
+      PAUSE_WHEN_EMPTY_SECONDS: 10
       # ICON: "data/icon.png"
       # OVERRIDE_ICON: "true"
       # gameplay
@@ -35,6 +36,7 @@ services:
       SPAWN_ANIMALS: "true"
       SPAWN_MONSTERS: "true"
       SPAWN_NPCS: "true"
+      ALLOW_FLIGHT: "true"
       # fabric
       EULA: "TRUE"
       TYPE: "FABRIC"
@@ -47,6 +49,8 @@ services:
         vanilla-refresh
         villager-in-a-bucket
         appleskin
+      CUSTOM_SERVER_PROPERTIES: |
+        custom1=value1
       # player
       MAX_PLAYERS: 24
       ANNOUNCE_PLAYER_ACHIEVEMENTS: "true"
