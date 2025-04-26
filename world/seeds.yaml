@@ -1,0 +1,7 @@
+seeds:
+  - name: village01
+    description: spawn with directly in a village
+    seed: 7145097980
+  - name: village02
+    description: spawn with directly in a village
+    seed: 32741367440
