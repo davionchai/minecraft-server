@@ -3,5 +3,5 @@ seeds:
     description: spawn with directly in a village
     seed: 7145097980
   - name: village02
-    description: spawn with directly in a village
+    description: spawn nearby sakura mountain with 3 villages nearby
     seed: 32741367440
