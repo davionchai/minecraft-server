@@ -1,0 +1,13 @@
+players:
+  - uuid: 1234567890abcdef
+    name: Player1
+    reason: Cheating
+    date: 2023-10-01
+  - uuid: 1234567890abcdef
+    name: Player2
+    reason: Toxic behavior
+    date: 2023-10-02
+  - uuid: 1234567890abcdef
+    name: Player3
+    reason: Exploiting bugs
+    date: 2023-10-03
