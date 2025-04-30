@@ -1,0 +1,29 @@
+import logging
+import tarfile
+from datetime import datetime, timezone
+from pathlib import Path
+
+
+logger: logging.Logger = logging.getLogger(__name__)
+
+def create_gzip_file_with_path(source_path: Path, target_path: Path, file_prefix: str) -> Path:
+    """Create a gzip file from the source path and save it to the target path.
+
+    Args:
+        target_path (Path): The directory where the gzip file will be saved.
+        file_prefix (str): The prefix for the gzip file name.
+        source_path (Path): The path of the directory to be archived.
+
+    Returns:
+        Path: The path of the created gzip file.
+    """
+    current_timestamp: str = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    archive_filename: str = f"{file_prefix}_{current_timestamp}.tar.gz"
+    archive_path: Path = Path(f"{target_path}/{archive_filename}")
+    
+    with tarfile.open(archive_path, "w:gz") as tar:
+        tar.add(source_path, arcname=Path(source_path).name)
+    
+    logger.info(f"created backup [{archive_path}]")
+
+    return archive_path
