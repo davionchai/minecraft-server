@@ -1,6 +1,7 @@
 import json
 import logging
 import sys
+import traceback
 from logging.handlers import TimedRotatingFileHandler
 from typing import Optional, Union
 from pathlib import Path
@@ -60,11 +61,10 @@ class DiscordBotHandler(logging.Handler):
             "embeds": [
                 {
                     "description": description,
-                    "title": f"Calling from {record.filename} task count: `{self.counter}`",
+                    "title": f"Calling from {record.filename}",
                 }
             ],
         }
-        self.counter += 1
         return log_entry
 
     def __build_description(self, record: logging.LogRecord):
@@ -72,6 +72,9 @@ class DiscordBotHandler(logging.Handler):
         if "data" in record.__dict__:
             description.update(record.__dict__["data"])
         description.update({"message": record.message})
+        if record.exc_info:
+            exc_text = "".join(traceback.format_exception(*record.exc_info))
+            description.update({"traceback": exc_text})
         return json.dumps(description)
 
 

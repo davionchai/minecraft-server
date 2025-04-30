@@ -11,6 +11,14 @@ class DiscordApi:
         self.base_url: str = webhook
 
     def call_api_endpoint(self, data: dict) -> Response:
+        """Sends a POST request to the Discord webhook URL with the provided data.
+
+        Args:
+            data (dict): The data to be sent in the request body.
+
+        Returns:
+            Response: The response object from the POST request.
+        """
         try:
             response: Response = requests.post(url=self.base_url, json=data)
             # success call will return status_code 204
