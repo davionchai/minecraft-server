@@ -1,0 +1,19 @@
+line-length = 120
+
+[lint]
+select = [
+    "F401",
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+]
+ignore = ["I001", "B019", "B904"]
