@@ -12,6 +12,7 @@ download:
 
 .PHONY: clean
 clean:
+	rm -rf target
 	rm -rf logs
 	rm -rf .ruff_cache
 	find . -type d -name "__pycache__" -exec rm -rf {} +
