@@ -74,22 +74,32 @@ services:
       - "./mods:/mods" # for fabric mods
       - "./players:/players"
 
-  # backups:
-  #   image: itzg/mc-backup:2025.4.0
-  #   user: "1000"
-  #   depends_on:
-  #     mc:
-  #       condition: service_healthy
-  #   environment:
-  #     BACKUP_METHOD: rsync
-  #     PRUNE_BACKUPS_COUNT: 50
-  #     PRUNE_BACKUPS_DAYS: 5000
-  #     BACKUP_INTERVAL: "2h"
-  #     RCON_HOST: mc
-  #     # since this service waits for mc to be healthy, no initial delay is needed
-  #     INITIAL_DELAY: 0
-  #     # As an example, to backup only the world data:
-  #     # INCLUDES: world,world_nether,world_the_end
-  #   volumes:
-  #     - ./data:/data:ro
-  #     - ./backups:/backups
+  backup_agent:
+    build:
+      context: ./backup_agent
+      dockerfile: ./Dockerfile 
+    container_name: minecraft-backup
+    depends_on:
+      minecraft:
+        condition: service_healthy
+    environment:
+      # system level
+      SYS_LOG_LEVEL: "INFO"
+      ENABLE_DISCORD_LOGGING: "true"
+      DISCORD_LOG_LEVEL: "ERROR"
+      # please make sure to export this variable in your shell that contains the json key "discord_webhook_url"
+      SECRET_ID: ${SECRET_ID}
+      ENVIRONMENT: "production"
+      # app level
+      FILE_PREFIX: "backup"
+      FILE_SUFFIX_TIMESTAMP_FORMAT: "%Y%m%dT%H%M%S"
+      TARGET_PATH: "/backups"
+      SOURCE_PATH: "/data/world"
+      BUCKET_NAME: "bucket-minecraft-backups"
+      BUCKET_PREFIX: "backup"
+      RETENTION_COUNT: 10 # number of backups to keep
+      CRON_SCHEDULE: "0 2 * * *" # runs daily at 2 AM
+    volumes:
+      - ./data:/data:ro
+      - ./backups:/backups
+    restart: unless-stopped
