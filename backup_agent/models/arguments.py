@@ -36,7 +36,7 @@ class Arguments:
         default_factory=lambda: os.getenv("ENABLE_DISCORD_LOGGING", "False").lower() == "true"
     )
     secret_id: str = field(default_factory=lambda: os.getenv("SECRET_ID"))
-    discord_log_level: str = field(default_factory=lambda: os.getenv("DISCORD_LOG_LEVEL", "INFO").upper())   
+    discord_log_level: str = field(default_factory=lambda: os.getenv("DISCORD_LOG_LEVEL", "INFO").upper())
     environment: str = field(default_factory=lambda: os.getenv("ENVIRONMENT", "staging"))
     # app level
     file_prefix: str = field(default_factory=lambda: os.getenv("FILE_PREFIX", "backup"))

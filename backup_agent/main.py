@@ -6,6 +6,7 @@ from utils.packer import create_gzip_file_with_path
 from utils.runner import Runner
 from utils.scheduler import run_cron_job
 
+
 def main(arguments: Arguments) -> None:
     logger.info("starting backup process")
 
