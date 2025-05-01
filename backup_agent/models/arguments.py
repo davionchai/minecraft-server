@@ -30,6 +30,7 @@ class Arguments:
     """
 
     # system level
+    cron_schedule: str = field(default_factory=lambda: os.getenv("CRON_SCHEDULE", "0 2 * * *"))
     sys_log_level: str = field(default_factory=lambda: os.getenv("SYS_LOG_LEVEL", "INFO").upper())
     enable_discord_logging: bool = field(
         default_factory=lambda: os.getenv("ENABLE_DISCORD_LOGGING", "False").lower() == "true"

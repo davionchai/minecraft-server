@@ -13,6 +13,4 @@ RUN pip install --no-cache-dir --upgrade pip \
 
 COPY . /app
 
-RUN chmod +x entrypoint.sh
-
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["python", "./main.py"]
