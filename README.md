@@ -52,3 +52,4 @@ oci session refresh
 ```sh
 oci os object get --bucket-name <bucket-name> --name <backup/file.tar.gz> --file <file-name>
 ```
+add `--auth instance_principal` if you are running within instance
