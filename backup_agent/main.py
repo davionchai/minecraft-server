@@ -57,6 +57,7 @@ if __name__ == "__main__":
         webhook=arguments.webhook_url,
     )
     try:
+        logger.info(f"backup agent started running with [{arguments.cron_schedule}] schedule")
         run_cron_job(
             cron_expr=arguments.cron_schedule,
             task=main,
