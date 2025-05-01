@@ -42,20 +42,20 @@ def main(arguments: Arguments) -> None:
 
 
 if __name__ == "__main__":
+    main_path: Path = Path(__file__).resolve().parent
+    arguments: Arguments = Arguments()
+    logger: logging.Logger = log_setup(
+        main_path=main_path,
+        log_filename=main_path.name,
+        logger_level=arguments.sys_log_level,
+        rotation_when="midnight",
+        rotation_interval=1,
+        rotation_backupCount=15,
+        provider="discord" if arguments.enable_discord_logging else None,
+        provider_level=arguments.discord_log_level,
+        webhook=arguments.webhook_url,
+    )
     try:
-        main_path: Path = Path(__file__).resolve().parent
-        arguments: Arguments = Arguments()
-        logger: logging.Logger = log_setup(
-            main_path=main_path,
-            log_filename=main_path.name,
-            logger_level=arguments.sys_log_level,
-            rotation_when="midnight",
-            rotation_interval=1,
-            rotation_backupCount=15,
-            provider="discord" if arguments.enable_discord_logging else None,
-            provider_level=arguments.discord_log_level,
-            webhook=arguments.webhook_url,
-        )
         main(arguments=arguments)
     except Exception as e:
         # logger.error(f"error detected: [{e}]")
