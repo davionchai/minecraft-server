@@ -4,7 +4,7 @@ from models.arguments import Arguments
 from utils.logger import log_setup
 from utils.packer import create_gzip_file_with_path
 from utils.runner import Runner
-
+from utils.scheduler import run_cron_job
 
 def main(arguments: Arguments) -> None:
     logger.info("starting backup process")
@@ -56,8 +56,12 @@ if __name__ == "__main__":
         webhook=arguments.webhook_url,
     )
     try:
-        main(arguments=arguments)
+        run_cron_job(
+            cron_expr=arguments.cron_schedule,
+            task=main,
+            arguments=arguments,
+        )
+        # main(arguments=arguments)
     except Exception as e:
-        # logger.error(f"error detected: [{e}]")
         logger.error(f"error detected: [{e}]", exc_info=True)
         raise
